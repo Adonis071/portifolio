@@ -1,0 +1,6 @@
+{
+  "name": "Portfólio Profissional",
+  "description": "Portfólio limpo, seguro e responsivo para exibição de projetos de software.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
