@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#020c1b"/>
+  <polyline points="200,300 350,150 500,250 600,100" fill="none" stroke="#00E5FF" stroke-width="6" stroke-linejoin="round" opacity="0.8"/>
+  <circle cx="200" cy="300" r="8" fill="#020c1b" stroke="#00E5FF" stroke-width="4"/>
+  <circle cx="350" cy="150" r="8" fill="#020c1b" stroke="#00E5FF" stroke-width="4"/>
+  <circle cx="500" cy="250" r="8" fill="#020c1b" stroke="#00E5FF" stroke-width="4"/>
+  <circle cx="600" cy="100" r="8" fill="#020c1b" stroke="#00E5FF" stroke-width="4"/>
+  <text x="400" y="400" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#00E5FF" text-anchor="middle">DASHBOARD DE MONITORAMENTO</text>
+  <text x="400" y="440" font-family="Arial, sans-serif" font-size="16" fill="#8892b0" text-anchor="middle">Substitua este arquivo (projeto-3.svg) no GitHub</text>
+</svg>
