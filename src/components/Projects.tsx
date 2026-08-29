@@ -25,9 +25,9 @@ export default function Projects() {
                 key={project.id}
                 initial={{ 
                   opacity: 0, 
-                  x: index % 2 === 0 ? -100 : 100,
-                  rotate: index % 2 === 0 ? -15 : 15,
-                  scale: 0.8
+                  x: index % 2 === 0 ? -200 : 200,
+                  rotate: index % 2 === 0 ? -360 : 360,
+                  scale: 0.5
                 }}
                 whileInView={{ 
                   opacity: 1, 
@@ -35,8 +35,8 @@ export default function Projects() {
                   rotate: 0,
                   scale: 1
                 }}
-                viewport={{ once: true, margin: "0px" }}
-                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+                viewport={{ once: false, margin: "0px" }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
                 className="w-full max-w-5xl mx-auto"
               >
                 <article
