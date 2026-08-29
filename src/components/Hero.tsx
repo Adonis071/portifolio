@@ -49,7 +49,7 @@ export default function Hero() {
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-none mb-8">
-            Código que <br/>
+            <span>Código que</span> <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-[#007BFF]">
               vale a pena.
             </span>

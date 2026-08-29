@@ -14,7 +14,7 @@ export default function Projects() {
         >
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">
-              Projetos em <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-blue-500">Destaque</span>
+              <span>Projetos em</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-blue-500">Destaque</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#00E5FF] to-blue-500"></div>
           </div>

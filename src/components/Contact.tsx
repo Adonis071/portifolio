@@ -59,7 +59,7 @@ export default function Contact() {
           {/* Coluna de Texto e Redes */}
           <div className="flex flex-col text-left">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-tight mb-6">
-              Vamos construir<br /> algo <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-blue-500">juntos?</span>
+              <span>Vamos construir</span><br /> <span>algo </span><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-blue-500">juntos?</span>
             </h2>
             <p className="max-w-md text-xl text-neutral-400 font-medium mb-12">
               Entre em contato para discutir oportunidades, arquitetura de software ou segurança em aplicações.
