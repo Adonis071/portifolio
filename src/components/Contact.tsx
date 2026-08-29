@@ -8,25 +8,42 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Constrói a mensagem para e-mail
-    const subject = encodeURIComponent(`Contato pelo site: ${formData.name}`);
-    const body = encodeURIComponent(`Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`);
-    const mailtoUrl = `mailto:adonisruis07@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Simula envio e abre o cliente de e-mail
-    setTimeout(() => {
-      window.location.href = mailtoUrl;
+    try {
+      // Envia o e-mail diretamente (por baixo dos panos) usando a API gratuita do FormSubmit
+      await fetch("https://formsubmit.co/ajax/adonisruis07@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            Nome: formData.name,
+            Email: formData.email,
+            Mensagem: formData.message,
+            _subject: `Novo Contato do Site: ${formData.name}`,
+            _template: "box"
+        })
+      });
+
+      // Sucesso
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormData({ name: "", email: "", message: "" });
       
       // Reseta a mensagem de sucesso após 8 segundos
       setTimeout(() => setIsSuccess(false), 8000);
-    }, 600);
+    } catch (error) {
+      console.error("Erro ao enviar e-mail:", error);
+      setIsSubmitting(false);
+      // Fallback para mailto caso a API falhe
+      const subject = encodeURIComponent(`Contato pelo site: ${formData.name}`);
+      const body = encodeURIComponent(`Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`);
+      window.location.href = `mailto:adonisruis07@gmail.com?subject=${subject}&body=${body}`;
+    }
   };
 
   return (
