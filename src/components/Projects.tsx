@@ -14,9 +14,9 @@ export default function Projects() {
         >
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">
-              Projetos em Destaque
+              Projetos em <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-blue-500">Destaque</span>
             </h2>
-            <div className="w-24 h-1 bg-[#00E5FF]"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#00E5FF] to-blue-500"></div>
           </div>
 
           <div className="flex flex-col gap-16 md:gap-24 pb-12">
@@ -25,22 +25,35 @@ export default function Projects() {
                 key={project.id}
                 initial={{ 
                   opacity: 0, 
-                  x: index % 2 === 0 ? -200 : 200,
-                  rotate: index % 2 === 0 ? -360 : 360,
-                  scale: 0.5
+                  y: 150,
+                  scale: 0.8
                 }}
                 whileInView={{ 
                   opacity: 1, 
-                  x: 0,
-                  rotate: 0,
+                  y: 0,
                   scale: 1
                 }}
-                viewport={{ once: false, margin: "0px" }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="w-full max-w-5xl mx-auto"
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ 
+                  duration: 1.2, 
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                className="w-full max-w-5xl mx-auto relative"
               >
+                {/* Smoke Trail - Anima para dissipar no final do movimento */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: [0, 1, 1, 0] }}
+                  transition={{ 
+                    duration: 1.2, 
+                    times: [0, 0.1, 0.7, 1], 
+                    ease: "easeInOut" 
+                  }}
+                  className="absolute inset-0 smoke-effect-intense pointer-events-none z-0"
+                />
+
                 <article
-                  className="group relative w-full aspect-[4/3] md:aspect-[16/9] bg-white/5 border border-white/10 overflow-hidden cursor-pointer block backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:border-[#00E5FF]/30"
+                  className="group relative z-10 w-full aspect-[4/3] md:aspect-[16/9] bg-[#050505] border border-white/10 overflow-hidden cursor-pointer block transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:border-[#00E5FF]/30"
                 >
                   {/* Background Image */}
                   <div 
@@ -52,8 +65,12 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
                   
                   {/* Play Icon Placeholder (like reference) */}
-                  <div className="btn-metallic absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#00E5FF] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100 z-20">
-                    <ArrowRight className="w-8 h-8 text-[#020c1b] relative z-20" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100 z-20">
+                    <div className="smoke-effect-wrapper rounded-full">
+                      <div className="btn-metallic w-16 h-16 bg-[#00E5FF]/10 backdrop-blur-xl border border-[#00E5FF]/40 rounded-full flex items-center justify-center shadow-[0_8px_32px_rgba(0,229,255,0.2)]">
+                        <ArrowRight className="w-8 h-8 text-[#00E5FF] relative z-20 group-hover:text-white transition-colors duration-300" />
+                      </div>
+                    </div>
                   </div>
 
                   {/* Content */}

@@ -11,6 +11,7 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import CursorSmoke from './components/CursorSmoke';
 import { ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 
@@ -83,6 +84,8 @@ export default function App() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/40 to-blue-950/90"></div>
       </motion.div>
 
+      <CursorSmoke />
+
       <div className="relative z-10 flex flex-col">
         <Navbar />
         <main>
@@ -97,16 +100,22 @@ export default function App() {
 
       <AnimatePresence>
         {showBackToTop && (
-          <motion.button
+          <motion.div
             initial={{ opacity: 0, scale: 0.5, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: 20 }}
-            onClick={scrollToTop}
-            className="btn-metallic fixed bottom-8 right-8 z-50 p-4 bg-[#00E5FF] text-[#020c1b] rounded-full shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.6)] hover:-translate-y-1 transition-all duration-300"
-            aria-label="Voltar ao topo"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
           >
-            <ArrowUp className="w-6 h-6 relative z-20" />
-          </motion.button>
+            <div className="smoke-effect-wrapper">
+              <button
+                onClick={scrollToTop}
+                className="btn-metallic p-4 bg-gradient-to-br from-[#00E5FF]/20 to-[#00E5FF]/5 backdrop-blur-2xl border-t border-l border-[#00E5FF]/60 border-b border-r border-[#00E5FF]/20 text-[#00E5FF] rounded-full shadow-[0_8px_32px_rgba(0,229,255,0.25),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_8px_32px_rgba(0,229,255,0.5),inset_0_1px_1px_rgba(255,255,255,0.5)] hover:bg-[#00E5FF]/20 hover:-translate-y-1 transition-all duration-300"
+                aria-label="Voltar ao topo"
+              >
+                <ArrowUp className="w-6 h-6 relative z-20 hover:text-white transition-colors duration-300" />
+              </button>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

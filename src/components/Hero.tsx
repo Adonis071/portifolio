@@ -33,14 +33,14 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col pt-32 pb-16 px-6 md:px-12 overflow-hidden text-white">
-      <div className="max-w-6xl mx-auto w-full relative z-10 flex flex-col justify-center flex-grow">
+      <div className="max-w-6xl mx-auto w-full relative z-10 flex flex-col items-center justify-center text-center flex-grow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl"
+          className="max-w-4xl flex flex-col items-center"
         >
-          <div className="inline-flex items-center gap-2 mb-8">
+          <div className="inline-flex items-center justify-center gap-2 mb-8">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="2" y="2" width="20" height="20" rx="4" stroke="#00E5FF" strokeWidth="2" strokeDasharray="4 4"/>
               <circle cx="12" cy="12" r="4" fill="#00E5FF"/>
@@ -55,21 +55,25 @@ export default function Hero() {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-neutral-300 max-w-2xl leading-relaxed font-medium mb-12">
+          <p className="text-xl md:text-2xl text-neutral-300 max-w-2xl leading-relaxed font-medium mb-12 mx-auto">
             Projeto focado em engenharia de software de alta performance. Desenvolvendo soluções digitais robustas, escaláveis e com a segurança como pilar central de cada linha de código.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 mb-12">
-            <motion.a
-              href="#projects"
-              onClick={handleScrollToProjects}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+            <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="btn-metallic group relative inline-flex items-center justify-center px-8 py-4 bg-[#00E5FF] text-[#020c1b] font-bold uppercase tracking-wider rounded-full overflow-hidden transition-all shadow-[0_0_15px_rgba(0,229,255,0.3)] hover:shadow-[0_0_25px_rgba(0,229,255,0.5)]"
+              className="smoke-effect-wrapper"
             >
-              <span className="relative z-20">Explorar Projetos</span>
-              <div className="absolute inset-0 h-full w-0 bg-white transition-all duration-300 ease-out group-hover:w-full z-0"></div>
-            </motion.a>
+              <a
+                href="#projects"
+                onClick={handleScrollToProjects}
+                className="btn-metallic group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-br from-[#00E5FF]/20 to-[#00E5FF]/5 backdrop-blur-2xl border-t border-l border-[#00E5FF]/60 border-b border-r border-[#00E5FF]/20 text-[#00E5FF] font-bold uppercase tracking-wider rounded-full overflow-hidden transition-all duration-300 shadow-[0_8px_32px_rgba(0,229,255,0.25),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_8px_32px_rgba(0,229,255,0.5),inset_0_1px_1px_rgba(255,255,255,0.5)] hover:bg-[#00E5FF]/20"
+              >
+                <span className="relative z-20 group-hover:text-white transition-colors duration-300">Explorar Projetos</span>
+                <div className="absolute inset-0 h-full w-0 bg-[#00E5FF]/30 backdrop-blur-md transition-all duration-300 ease-out group-hover:w-full z-0"></div>
+              </a>
+            </motion.div>
             <div className="flex items-center gap-4 text-sm text-neutral-400">
               <span className="block w-12 h-px bg-neutral-600"></span>
               Desenvolvedor de Software

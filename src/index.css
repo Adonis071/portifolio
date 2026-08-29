@@ -45,5 +45,148 @@ body {
     pointer-events: none;
     z-index: 10;
   }
+
+  @keyframes smoke-1 {
+    0% { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 0.5; filter: blur(12px); }
+    33% { transform: scale(1.1) translate(-2px, -4px) rotate(5deg); opacity: 0.7; filter: blur(16px); }
+    66% { transform: scale(0.95) translate(2px, -2px) rotate(-3deg); opacity: 0.6; filter: blur(14px); }
+    100% { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 0.5; filter: blur(12px); }
+  }
+
+  @keyframes smoke-2 {
+    0% { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 0.4; filter: blur(15px); }
+    33% { transform: scale(1.15) translate(4px, 2px) rotate(-5deg); opacity: 0.6; filter: blur(18px); }
+    66% { transform: scale(0.9) translate(-2px, 4px) rotate(3deg); opacity: 0.5; filter: blur(14px); }
+    100% { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 0.4; filter: blur(15px); }
+  }
+
+  .smoke-effect-wrapper {
+    position: relative;
+    display: inline-flex;
+    border-radius: 9999px;
+    z-index: 1;
+  }
+
+  .smoke-effect-wrapper::before,
+  .smoke-effect-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -15px;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+    transition: all 0.5s ease;
+  }
+
+  .smoke-effect-wrapper::before {
+    background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.5) 0%, transparent 60%);
+    animation: smoke-1 6s infinite alternate ease-in-out;
+  }
+
+  .smoke-effect-wrapper::after {
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.4) 0%, transparent 70%);
+    animation: smoke-2 8s infinite alternate ease-in-out;
+    animation-delay: -2s;
+  }
+
+  .smoke-effect-wrapper:hover::before {
+    background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.7) 0%, transparent 70%);
+    inset: -20px;
+  }
+
+  .smoke-effect-wrapper:hover::after {
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.6) 0%, transparent 80%);
+    inset: -20px;
+  }
+
+  .smoke-effect-intense {
+    position: relative;
+    z-index: 1;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .smoke-effect-intense::before,
+  .smoke-effect-intense::after {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Núcleo denso ao redor da imagem */
+  .smoke-effect-intense::before {
+    inset: -30px;
+    background: radial-gradient(ellipse at center, rgba(0, 229, 255, 1) 0%, rgba(0, 229, 255, 0.4) 60%, transparent 80%);
+    animation: smoke-core 3s infinite alternate ease-in-out;
+    filter: blur(25px);
+    opacity: 1;
+  }
+
+  /* Trilha (rastro) contínua e alongada que se dissipa gradualmente */
+  .smoke-effect-intense::after {
+    inset: 20% -40px -400px -40px; /* Começa um pouco abaixo do topo e se estende para baixo */
+    background: linear-gradient(to bottom, 
+      rgba(0, 229, 255, 1) 0%, 
+      rgba(0, 229, 255, 0.6) 30%, 
+      rgba(0, 229, 255, 0.3) 60%, 
+      transparent 100%
+    );
+    animation: smoke-trail-motion 4s infinite alternate ease-in-out;
+    filter: blur(35px);
+    opacity: 1;
+    transform-origin: top center;
+  }
+
+  .smoke-effect-intense:hover::before {
+    inset: -50px;
+    background: radial-gradient(ellipse at center, rgba(0, 229, 255, 1) 0%, rgba(0, 229, 255, 0.6) 50%, transparent 85%);
+    filter: blur(35px);
+  }
+
+  .smoke-effect-intense:hover::after {
+    inset: 20% -60px -500px -60px;
+    filter: blur(50px);
+    opacity: 1;
+  }
+
+  @keyframes smoke-core {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.8; filter: blur(30px); }
+    100% { transform: scale(1.05) translate(0, -5px); opacity: 1; filter: blur(35px); }
+  }
+
+  @keyframes smoke-trail-motion {
+    0% { transform: scaleY(1) skewX(0deg) translateX(0); opacity: 0.7; filter: blur(40px); }
+    33% { transform: scaleY(1.15) skewX(3deg) translateX(-15px); opacity: 0.9; filter: blur(50px); }
+    66% { transform: scaleY(0.95) skewX(-2deg) translateX(10px); opacity: 0.8; filter: blur(45px); }
+    100% { transform: scaleY(1.2) skewX(1deg) translateX(0); opacity: 1; filter: blur(55px); }
+  }
+
+  .cursor-smoke-particle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /* Gradiente idêntico ao plasma dos botões */
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.9) 0%, rgba(0, 229, 255, 0.3) 40%, transparent 70%);
+    filter: blur(20px);
+    transform: translate(-50%, -50%) scale(0.5);
+    animation: cursor-smoke-fade 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  @keyframes cursor-smoke-fade {
+    0% {
+      opacity: 0.9;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(3);
+    }
+  }
 }
 

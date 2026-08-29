@@ -10,29 +10,33 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col md:flex-row justify-between items-center text-center md:items-start md:text-left gap-16 mb-24"
+          className="flex flex-col md:flex-row justify-center items-center text-center gap-16 mb-24"
         >
-          <div className="flex flex-col items-center md:items-start w-full md:w-auto">
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-6">
-              Vamos construir<br/>algo <span className="text-[#00E5FF]">juntos?</span>
+          <div className="flex flex-col items-center w-full md:w-auto text-center">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-none mb-6">
+              Vamos construir<br className="hidden md:block" /> algo <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5FF] to-blue-500">juntos?</span>
             </h2>
-            <p className="max-w-md text-xl text-neutral-400 font-medium mb-10">
+            <p className="max-w-md text-xl text-neutral-400 font-medium mb-10 mx-auto">
               Entre em contato para discutir oportunidades, arquitetura de software ou segurança em aplicações.
             </p>
-            <motion.a
-              href="https://wa.me/5591987054880"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="btn-metallic group relative inline-flex items-center justify-center px-10 py-5 bg-[#00E5FF] text-[#020c1b] text-xl font-bold uppercase tracking-wider rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]"
+              className="smoke-effect-wrapper"
             >
-              <span className="relative z-20">Iniciar Conversa</span>
-              <div className="absolute inset-0 h-full w-0 bg-white transition-all duration-300 ease-out group-hover:w-full z-0"></div>
-            </motion.a>
+              <a
+                href="https://wa.me/5591987054880"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-metallic group relative inline-flex items-center justify-center px-10 py-5 bg-[#00E5FF]/10 backdrop-blur-xl border border-[#00E5FF]/40 text-[#00E5FF] text-xl font-bold uppercase tracking-wider rounded-full overflow-hidden transition-all duration-300 shadow-[0_8px_32px_rgba(0,229,255,0.2)] hover:shadow-[0_8px_32px_rgba(0,229,255,0.5)] hover:bg-[#00E5FF]/20 hover:border-[#00E5FF]/60"
+              >
+                <span className="relative z-20 group-hover:text-white transition-colors duration-300">Iniciar Conversa</span>
+                <div className="absolute inset-0 h-full w-0 bg-[#00E5FF]/30 backdrop-blur-md transition-all duration-300 ease-out group-hover:w-full z-0"></div>
+              </a>
+            </motion.div>
           </div>
 
-          <div className="flex flex-col items-center md:items-start gap-6 w-full md:w-auto">
+          <div className="flex flex-col items-center gap-6 w-full md:w-auto mt-12 md:mt-0 md:ml-12">
             <span className="text-sm font-bold tracking-widest uppercase text-[#00E5FF] border-b border-white/10 pb-2">
               Redes Sociais
             </span>
