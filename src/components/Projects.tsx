@@ -25,18 +25,19 @@ export default function Projects() {
                 key={project.id}
                 initial={{ 
                   opacity: 0, 
-                  y: 150,
-                  scale: 0.8
+                  y: 100,
+                  scale: 0.9
                 }}
                 whileInView={{ 
                   opacity: 1, 
                   y: 0,
                   scale: 1
                 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: false, amount: 0.25 }}
                 transition={{ 
-                  duration: 1.2, 
-                  ease: [0.16, 1, 0.3, 1]
+                  duration: 1.5,
+                  delay: 0.1,
+                  ease: [0.22, 1, 0.36, 1]
                 }}
                 className="w-full max-w-5xl mx-auto relative"
               >
@@ -45,15 +46,16 @@ export default function Projects() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: [0, 1, 1, 0] }}
                   transition={{ 
-                    duration: 1.2, 
-                    times: [0, 0.1, 0.7, 1], 
+                    duration: 1.5,
+                    delay: 0.1,
+                    times: [0, 0.2, 0.6, 1], 
                     ease: "easeInOut" 
                   }}
                   className="absolute inset-0 smoke-effect-intense pointer-events-none z-0"
                 />
 
                 <article
-                  className="group relative z-10 w-full aspect-[4/3] md:aspect-[16/9] bg-[#050505] border border-white/10 overflow-hidden cursor-pointer block transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:border-[#00E5FF]/30"
+                  className="group relative z-10 w-full aspect-[4/3] md:aspect-[16/9] bg-[#050505] border border-white/10 overflow-hidden cursor-pointer block transition-all duration-700 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,229,255,0.2)] hover:border-[#00E5FF]/40"
                 >
                   {/* Background Image */}
                   <div 
