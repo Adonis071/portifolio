@@ -25,9 +25,9 @@ export default function Contact() {
               rel="noopener noreferrer"
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="group relative inline-flex items-center justify-center px-10 py-5 bg-[#00E5FF] text-[#020c1b] text-xl font-bold uppercase tracking-wider rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]"
+              className="btn-metallic group relative inline-flex items-center justify-center px-10 py-5 bg-[#00E5FF] text-[#020c1b] text-xl font-bold uppercase tracking-wider rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]"
             >
-              <span className="relative z-10">Iniciar Conversa</span>
+              <span className="relative z-20">Iniciar Conversa</span>
               <div className="absolute inset-0 h-full w-0 bg-white transition-all duration-300 ease-out group-hover:w-full z-0"></div>
             </motion.a>
           </div>

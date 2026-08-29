@@ -52,8 +52,8 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
                   
                   {/* Play Icon Placeholder (like reference) */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#00E5FF] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100 z-20">
-                    <ArrowRight className="w-8 h-8 text-[#020c1b]" />
+                  <div className="btn-metallic absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#00E5FF] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100 z-20">
+                    <ArrowRight className="w-8 h-8 text-[#020c1b] relative z-20" />
                   </div>
 
                   {/* Content */}

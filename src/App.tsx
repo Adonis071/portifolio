@@ -22,8 +22,12 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.innerHeight + window.scrollY;
+      const scrollY = window.scrollY;
+      const scrollPosition = window.innerHeight + scrollY;
       const bodyHeight = document.documentElement.scrollHeight;
+      
+      // Update global scroll variable for metallic effect
+      document.documentElement.style.setProperty('--scroll-y', scrollY.toString());
       
       // Show button only when near the bottom (within 50px of the bottom)
       if (scrollPosition >= bodyHeight - 50) {
@@ -33,7 +37,7 @@ export default function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -98,10 +102,10 @@ export default function App() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: 20 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 p-4 bg-[#00E5FF] text-[#020c1b] rounded-full shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.6)] hover:-translate-y-1 transition-all duration-300"
+            className="btn-metallic fixed bottom-8 right-8 z-50 p-4 bg-[#00E5FF] text-[#020c1b] rounded-full shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.6)] hover:-translate-y-1 transition-all duration-300"
             aria-label="Voltar ao topo"
           >
-            <ArrowUp className="w-6 h-6" />
+            <ArrowUp className="w-6 h-6 relative z-20" />
           </motion.button>
         )}
       </AnimatePresence>
