@@ -55,7 +55,7 @@ export default function Projects() {
                 />
 
                 <article
-                  className="group relative z-10 w-full aspect-[4/3] md:aspect-[16/9] bg-[#050505] border border-white/10 overflow-hidden cursor-pointer block transition-all duration-700 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,229,255,0.2)] hover:border-[#00E5FF]/40"
+                  className="group relative z-10 w-full aspect-[4/3] md:aspect-[16/9] bg-[#050505] border border-white/10 rounded-2xl overflow-hidden cursor-pointer block transition-all duration-700 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,229,255,0.2)] hover:border-[#00E5FF]/40"
                 >
                   {/* Background Image */}
                   <div 
