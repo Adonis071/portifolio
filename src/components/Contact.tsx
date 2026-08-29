@@ -1,25 +1,31 @@
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { personalInfo } from "../data";
+import { CheckCircle } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Constrói a mensagem para o WhatsApp
-    const text = `Olá! Meu nome é ${formData.name}.\nMeu e-mail é ${formData.email}\n\nMensagem:\n${formData.message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/5591987054880?text=${encodedText}`;
+    // Constrói a mensagem para e-mail
+    const subject = encodeURIComponent(`Contato pelo site: ${formData.name}`);
+    const body = encodeURIComponent(`Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`);
+    const mailtoUrl = `mailto:adonisruis07@gmail.com?subject=${subject}&body=${body}`;
     
-    // Abre no WhatsApp após um pequeno delay para dar feedback visual
+    // Simula envio e abre o cliente de e-mail
     setTimeout(() => {
-      window.open(whatsappUrl, '_blank');
+      window.location.href = mailtoUrl;
       setIsSubmitting(false);
+      setIsSuccess(true);
       setFormData({ name: "", email: "", message: "" });
+      
+      // Reseta a mensagem de sucesso após 8 segundos
+      setTimeout(() => setIsSuccess(false), 8000);
     }, 600);
   };
 
@@ -84,65 +90,94 @@ export default function Contact() {
 
           {/* Coluna do Formulário */}
           <div className="w-full lg:pl-10">
-            <form 
-              className="flex flex-col gap-6 p-8 md:p-10 bg-[#050505]/80 border border-white/10 rounded-2xl backdrop-blur-xl relative overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)]"
-              onSubmit={handleSubmit}
+            <div 
+              className="flex flex-col p-8 md:p-10 bg-[#050505]/80 border border-white/10 rounded-2xl backdrop-blur-xl relative overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] min-h-[500px]"
             >
               {/* Efeito de brilho de fundo no card do formulário */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#00E5FF] opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
               
-              <h3 className="text-2xl font-bold uppercase tracking-widest text-white mb-2">Envie uma mensagem</h3>
-              
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm text-neutral-400 uppercase tracking-widest font-semibold">Nome</label>
-                <input 
-                  type="text" 
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  required
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00E5FF]/60 focus:bg-black transition-colors" 
-                  placeholder="Como posso te chamar?" 
-                />
-              </div>
+              <AnimatePresence mode="wait">
+                {isSuccess ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col items-center justify-center h-full flex-grow text-center gap-4 absolute inset-0 px-6"
+                  >
+                    <div className="w-20 h-20 rounded-full bg-[#00E5FF]/10 flex items-center justify-center mb-2 border border-[#00E5FF]/40 shadow-[0_0_30px_rgba(0,229,255,0.2)]">
+                      <CheckCircle className="w-10 h-10 text-[#00E5FF]" />
+                    </div>
+                    <h3 className="text-2xl font-bold uppercase tracking-widest text-white">Enviado!</h3>
+                    <p className="text-neutral-400 text-lg font-medium">
+                      Muito obrigado pelo seu tempo.<br />Entraremos em contato.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.form 
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex flex-col gap-6 w-full h-full"
+                    onSubmit={handleSubmit}
+                  >
+                    <h3 className="text-2xl font-bold uppercase tracking-widest text-white mb-2">Envie uma mensagem</h3>
+                    
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="name" className="text-sm text-neutral-400 uppercase tracking-widest font-semibold">Nome</label>
+                      <input 
+                        type="text" 
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        required
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00E5FF]/60 focus:bg-black transition-colors" 
+                        placeholder="Como posso te chamar?" 
+                      />
+                    </div>
 
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm text-neutral-400 uppercase tracking-widest font-semibold">E-mail</label>
-                <input 
-                  type="email" 
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  required
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00E5FF]/60 focus:bg-black transition-colors" 
-                  placeholder="seu@melhoremail.com" 
-                />
-              </div>
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="email" className="text-sm text-neutral-400 uppercase tracking-widest font-semibold">E-mail</label>
+                      <input 
+                        type="email" 
+                        id="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        required
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00E5FF]/60 focus:bg-black transition-colors" 
+                        placeholder="seu@melhoremail.com" 
+                      />
+                    </div>
 
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-sm text-neutral-400 uppercase tracking-widest font-semibold">Mensagem</label>
-                <textarea 
-                  id="message"
-                  rows={5} 
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  required
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00E5FF]/60 focus:bg-black transition-colors resize-none" 
-                  placeholder="Descreva seu projeto ou dúvida..."
-                ></textarea>
-              </div>
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="message" className="text-sm text-neutral-400 uppercase tracking-widest font-semibold">Mensagem</label>
+                      <textarea 
+                        id="message"
+                        rows={5} 
+                        value={formData.message}
+                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        required
+                        className="w-full bg-black/60 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00E5FF]/60 focus:bg-black transition-colors resize-none" 
+                        placeholder="Descreva seu projeto ou dúvida..."
+                      ></textarea>
+                    </div>
 
-              <button 
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-metallic mt-4 group relative inline-flex items-center justify-center px-8 py-5 bg-[#00E5FF]/10 backdrop-blur-xl border border-[#00E5FF]/40 text-[#00E5FF] text-lg font-bold uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 hover:bg-[#00E5FF]/20 hover:border-[#00E5FF]/60 hover:shadow-[0_8px_32px_rgba(0,229,255,0.3)] w-full disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span className="relative z-20 group-hover:text-white transition-colors duration-300">
-                  {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
-                </span>
-                <div className="absolute inset-0 h-full w-0 bg-[#00E5FF]/30 backdrop-blur-md transition-all duration-300 ease-out group-hover:w-full z-0"></div>
-              </button>
-            </form>
+                    <button 
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn-metallic mt-4 group relative inline-flex items-center justify-center px-8 py-5 bg-[#00E5FF]/10 backdrop-blur-xl border border-[#00E5FF]/40 text-[#00E5FF] text-lg font-bold uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 hover:bg-[#00E5FF]/20 hover:border-[#00E5FF]/60 hover:shadow-[0_8px_32px_rgba(0,229,255,0.3)] w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span className="relative z-20 group-hover:text-white transition-colors duration-300">
+                        {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                      </span>
+                      <div className="absolute inset-0 h-full w-0 bg-[#00E5FF]/30 backdrop-blur-md transition-all duration-300 ease-out group-hover:w-full z-0"></div>
+                    </button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </motion.div>
 
