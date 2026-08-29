@@ -1,75 +1,89 @@
 import { motion } from "motion/react";
-import { ExternalLink, Github } from "lucide-react";
 import { projects } from "../data";
+import { ArrowRight, MapPin } from "lucide-react";
 
 export default function Projects() {
   return (
     <section id="projects" className="py-24">
-      <div className="max-w-5xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-neutral-900 mb-4">Projetos em Destaque</h2>
-            <p className="text-neutral-600 max-w-2xl">
-              Uma seleção de trabalhos recentes. Cada projeto foi desenvolvido com atenção rigorosa aos detalhes e práticas de desenvolvimento seguro.
-            </p>
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">
+              Projetos em Destaque
+            </h2>
+            <div className="w-24 h-1 bg-[#00E5FF]"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-col gap-16 md:gap-24 pb-12">
             {projects.map((project, index) => (
-              <motion.article
+              <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group flex flex-col justify-between p-6 bg-white border border-neutral-200 rounded-2xl hover:border-neutral-300 hover:shadow-sm transition-all"
+                initial={{ 
+                  opacity: 0, 
+                  x: index % 2 === 0 ? -200 : 200,
+                  rotate: index % 2 === 0 ? -360 : 360,
+                  scale: 0.5
+                }}
+                whileInView={{ 
+                  opacity: 1, 
+                  x: 0,
+                  rotate: 0,
+                  scale: 1
+                }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="w-full max-w-5xl mx-auto"
               >
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3">{project.title}</h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed mb-6">
-                    {project.description}
-                  </p>
+                <article
+                  className="group relative w-full aspect-[4/3] md:aspect-[16/9] bg-white/5 border border-white/10 overflow-hidden cursor-pointer block backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:border-[#00E5FF]/30"
+                >
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${project.image})` }}
+                  ></div>
                   
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 bg-neutral-100 text-neutral-700 rounded-md text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
+                  
+                  {/* Play Icon Placeholder (like reference) */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#00E5FF] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100 z-20">
+                    <ArrowRight className="w-8 h-8 text-[#020c1b]" />
                   </div>
-                </div>
 
-                <div className="flex items-center gap-4 pt-4 border-t border-neutral-100">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
-                    aria-label={`Ver código fonte de ${project.title}`}
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>Código</span>
-                  </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
-                    aria-label={`Visitar projeto ${project.title}`}
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Visitar</span>
-                  </a>
-                </div>
-              </motion.article>
+                  {/* Content */}
+                  <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end z-10">
+                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 leading-tight">
+                        {project.title}
+                      </h3>
+                      
+                      <div className="text-[#00E5FF] font-bold text-sm uppercase tracking-widest mb-4">
+                        {project.technologies.join(" • ")}
+                      </div>
+                      
+                      <div className="flex items-center gap-2 text-neutral-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <MapPin className="w-4 h-4" />
+                        <span>{project.githubUrl ? "Repositório Disponível" : "Projeto Fechado"}</span>
+                      </div>
+
+                      <a 
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 text-white font-bold uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 hover:text-[#00E5FF]"
+                      >
+                        Ler Case <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -77,3 +91,4 @@ export default function Projects() {
     </section>
   );
 }
+

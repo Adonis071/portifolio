@@ -8,7 +8,7 @@ export const personalInfo = {
   socials: [
     {
       name: "GitHub",
-      url: "https://github.com",
+      url: "https://github.com/Adonis071/AdonisPantoja",
       icon: Github,
     },
     {
@@ -42,21 +42,24 @@ export const projects = [
     technologies: ["React", "Node.js", "Express", "Segurança"],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "2",
     title: "Plataforma de E-commerce",
-    description: "E-commerce completo com carrinho de compras, integração de pagamentos e painel administrativo protegido por RBAC (Controle de Acesso Baseado em Funções).",
+    description: "E-commerce completo com carrinho de compras, integração de pagamentos e painel administrativo protegido por RBAC.",
     technologies: ["TypeScript", "Tailwind", "PostgreSQL"],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "3",
     title: "Dashboard de Monitoramento",
-    description: "Painel em tempo real para visualização de métricas do sistema com sanitização rigorosa de inputs para evitar injeções de dados maliciosos.",
+    description: "Painel em tempo real para visualização de métricas do sistema com sanitização rigorosa de inputs.",
     technologies: ["React", "WebSockets", "D3.js"],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
   },
 ];
