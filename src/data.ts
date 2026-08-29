@@ -42,7 +42,7 @@ export const projects = [
     technologies: ["React", "Node.js", "Express", "Segurança"],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
-    image: "/projeto-1.svg",
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "2",
@@ -51,7 +51,7 @@ export const projects = [
     technologies: ["TypeScript", "Tailwind", "PostgreSQL"],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
-    image: "/projeto-2.svg",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "3",
@@ -60,6 +60,6 @@ export const projects = [
     technologies: ["React", "WebSockets", "D3.js"],
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
-    image: "/projeto-3.svg",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
   },
 ];

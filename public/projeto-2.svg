@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
-  <rect width="800" height="500" fill="#020c1b"/>
-  <rect x="250" y="150" width="300" height="200" rx="10" fill="none" stroke="#00E5FF" stroke-width="4" opacity="0.3"/>
-  <circle cx="350" cy="250" r="30" fill="#00E5FF" opacity="0.2"/>
-  <circle cx="450" cy="250" r="30" fill="#00E5FF" opacity="0.2"/>
-  <path d="M300 200 H500 M300 250 H500 M300 300 H500" stroke="#00E5FF" stroke-width="2" stroke-dasharray="5 5" opacity="0.5"/>
-  <text x="400" y="390" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#00E5FF" text-anchor="middle">E-COMMERCE</text>
-  <text x="400" y="430" font-family="Arial, sans-serif" font-size="16" fill="#8892b0" text-anchor="middle">Substitua este arquivo (projeto-2.svg) no GitHub</text>
-</svg>
